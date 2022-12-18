@@ -16,8 +16,9 @@
   z-index: 999;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
   width: 250px;
+  height: 60%;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: scroll;
   padding: 5px;
 }
 

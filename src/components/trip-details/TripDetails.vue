@@ -36,6 +36,7 @@ export default defineComponent({
   font-size: 30px;
   left: 20px;
   width: 350px;
+  background: #fff;
 }
 
 strong {
