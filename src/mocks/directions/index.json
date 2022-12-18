@@ -1,0 +1,56 @@
+{
+  "routes": [
+    {
+      "country_crossed": false,
+      "weight_name": "auto",
+      "weight": 714.275,
+      "duration": 579.896,
+      "distance": 2957.851,
+      "legs": [
+        {
+          "via_waypoints": [],
+          "admins": [
+            {
+              "iso_3166_1_alpha3": "USA",
+              "iso_3166_1": "US"
+            }
+          ],
+          "weight": 714.275,
+          "duration": 579.896,
+          "steps": [],
+          "distance": 2957.851,
+          "summary": "Springfield Avenue, Washington Street"
+        }
+      ],
+      "geometry": {
+        "coordinates": [
+          [-74.19036, 40.728906],
+          [-74.190566, 40.72895],
+          [-74.188314, 40.734664],
+          [-74.180101, 40.736273],
+          [-74.177157, 40.737024],
+          [-74.175062, 40.736408],
+          [-74.174612, 40.736728],
+          [-74.171633, 40.742158],
+          [-74.17586, 40.743465],
+          [-74.175806, 40.743588]
+        ],
+        "type": "LineString"
+      }
+    }
+  ],
+  "waypoints": [
+    {
+      "distance": 10.443,
+      "name": "Spruce Street",
+      "location": [-74.19036, 40.728906]
+    },
+    {
+      "distance": 4.466,
+      "name": "Dr. Martin Luther King Jr. Boulevard",
+      "location": [-74.175806, 40.743588]
+    }
+  ],
+  "code": "Ok",
+  "uuid": "mTyWPl_7cC9uLYRPplO-ZZxvTzoukrp2zQnuqSVVsFMLXZKMtkUI8g=="
+}

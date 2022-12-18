@@ -1,50 +1,51 @@
 import { defineComponent, onMounted, ref, watch } from "vue";
-import { usePlacesStore } from "@/composables";
+import { usePlacesStore, useMapStore } from "@/composables";
 import Mapboxgl from "mapbox-gl";
 
 export default defineComponent({
-    name: "MapView",
+  name: "MapView",
 
-    setup() {
-        const mapElement = ref<HTMLDivElement>();
-        const { isUserLocationReady, userLocation } = usePlacesStore();
+  setup() {
+    const mapElement = ref<HTMLDivElement>();
+    const { isUserLocationReady, userLocation } = usePlacesStore();
+    const { setMap } = useMapStore();
 
-        const initMap = async () => {
-            if (!mapElement.value) throw new Error("Map element is not defined");
-            if (!userLocation.value) throw new Error("User location is not defined");
+    const initMap = async () => {
+      if (!mapElement.value) throw new Error("Map element is not defined");
+      if (!userLocation.value) throw new Error("User location is not defined");
 
-            await Promise.resolve();
+      await Promise.resolve();
 
-            const map = new Mapboxgl.Map({
-                container: mapElement.value, // container ID
-                style: "mapbox://styles/mapbox/streets-v12", // style URL
-                center: userLocation.value, // starting position [lng, lat]
-                zoom: 15, // starting zoom
-            });
-            const myLocationPopup = new Mapboxgl.Popup({ offset: 25 })
-                .setLngLat(userLocation.value)
-                .setText("You are here");
+      const map = new Mapboxgl.Map({
+        container: mapElement.value, // container ID
+        style: "mapbox://styles/mapbox/streets-v12", // style URL
+        center: userLocation.value, // starting position [lng, lat]
+        zoom: 15, // starting zoom
+      });
+      const myLocationPopup = new Mapboxgl.Popup({ offset: 25 }).setLngLat(userLocation.value).setText("You are here");
 
-            const myLocationMarker = new Mapboxgl.Marker({
-                color: "#000",
-                draggable: false,
-            })
-                .setLngLat(userLocation.value)
-                .addTo(map)
-                .setPopup(myLocationPopup);
-        };
+      new Mapboxgl.Marker({
+        color: "#000",
+        draggable: false,
+      })
+        .setLngLat(userLocation.value)
+        .addTo(map)
+        .setPopup(myLocationPopup);
 
-        onMounted(() => {
-            if (isUserLocationReady.value) return initMap();
-        });
+      setMap(map);
+    };
 
-        watch(isUserLocationReady, (isReady) => {
-            if (isReady) return initMap();
-        });
+    onMounted(() => {
+      if (isUserLocationReady.value) return initMap();
+    });
 
-        return {
-            isUserLocationReady,
-            mapElement,
-        };
-    },
+    watch(isUserLocationReady, (isReady) => {
+      if (isReady) return initMap();
+    });
+
+    return {
+      isUserLocationReady,
+      mapElement,
+    };
+  },
 });
